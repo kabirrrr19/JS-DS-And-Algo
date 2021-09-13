@@ -1,0 +1,39 @@
+'use strict';
+
+const merge = function (arr1, arr2) {
+    let i = 0;
+    let j = 0;
+    let result = [];
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] > arr2[j]) {
+            result.push(arr2[j]);
+            j++;
+        }
+        else {
+            result.push(arr1[i]);
+            i++;
+        }
+    }
+    while (i < arr1.length) {
+        result.push(arr1[i]);
+        i++;
+    }
+    while (j < arr2.length) {
+        result.push(arr2[j]);
+        j++;
+    }
+    return result;
+}
+
+const mergeSort = function (arr) {
+    if (arr.length <= 1 ) return arr;
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+}
+
+
+const arr1 = [1, 7, 3, 2, 17, 5, 9, 21, 11];
+const arr2 = [];
+console.log(mergeSort(arr1));
